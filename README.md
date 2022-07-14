@@ -69,3 +69,15 @@ edit index.html
 </body>
 </html>
 ```
+
+start a local server
+
+```sh
+python -m SimpleHTTPServer
+```
+
+open [http://0.0.0.0:8000](http://0.0.0.0:8000) and open the development console
+
+![](doc-images/00_screenshot.png)
+
+examine the network activity and console output
