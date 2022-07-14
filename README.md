@@ -187,3 +187,72 @@ body {
 	background: green;
 }
 ```
+
+## include style from javascript
+
+edit index.html
+
+```html
+<html>
+<head>
+</head>
+<body>
+	<div>
+		html content here!
+	</div>
+	<script type="text/javascript" src="./dist/main.js"></script>
+</body>
+</html>
+```
+
+edit `./src/index.js`
+
+```js
+import { greet } from './module1.js';
+
+import './style.css';
+
+function main() {
+	console.log('main');
+	greet('javi');
+	greet('carlos');
+}
+
+main();
+```
+
+```sh
+npm run build
+```
+
+❌ error
+
+
+install webpack loaders and configure webpack
+
+```sh
+npm install -d css-loader style-loader
+```
+
+edit `webpack.config.js`
+
+```js
+module.exports = {
+	module: {
+		rules: [
+		{ test: /\.css$/, use: ['style-loader','css-loader'] },
+		]
+	},
+	mode: 'development',
+}
+```
+
+```sh
+npm install -d css-loader style-loader
+npm run build
+```
+
+webpack adds some javascript code to inject the styles in the DOM after the HTML & JS code has been loaded and parsed
+(see main.js ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js)
+
+![](doc-images/01_screenshot.png)
