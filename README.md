@@ -1,5 +1,7 @@
 # steps
 
+## start project
+
 add `node_modules` to `.gitignore`
 
 create project & install webpack
@@ -32,6 +34,8 @@ function main() {
 main();
 ```
 
+## first execution of webpack
+
 execute webpack
 
 ```sh
@@ -51,6 +55,8 @@ add `/dist` to `.gitignore`, add `script` to `package.json`
 ```sh
 npm run build
 ```
+
+## add index.html and local server
 
 add an index.html
 
@@ -81,3 +87,78 @@ open [http://0.0.0.0:8000](http://0.0.0.0:8000) and open the development console
 ![](doc-images/00_screenshot.png)
 
 examine the network activity and console output
+
+## add more js modules
+
+```sh
+touch src/module1.js
+```
+
+```js
+// src/module1.js
+export function greet(name) {
+	console.log(`Hello ${name}!`);
+}
+```
+
+```js
+// src/index.js
+import { greet } from './module1.js';
+
+function main() {
+	console.log('main');
+}
+
+main();
+```
+
+```sh
+npm run build
+```
+
+look at `./dist/main.js`
+
+```js
+(()=>{"use strict";console.log("main")})();
+```
+
+🤔 because of webpack dead code elimination
+
+
+```js
+// src/index.js
+import { greet } from './module1.js';
+
+function main() {
+	console.log('main');
+	greet('javi');
+}
+
+main();
+```
+
+look at `./dist/main.js`
+
+```js
+(()=>{"use strict";console.log("main"),console.log("Hello javi!")})();
+```
+
+```js
+// src/index.js
+import { greet } from './module1.js';
+
+function main() {
+	console.log('main');
+	greet('javi');
+	greet('carlos');
+}
+
+main();
+```
+
+look at `./dist/main.js`
+
+```js
+(()=>{"use strict";function o(o){console.log(`Hello ${o}!`)}console.log("main"),o("javi"),o("carlos")})();
+```
+
