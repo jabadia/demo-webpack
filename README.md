@@ -45,3 +45,9 @@ console.log("main");
 ```
 
 (code is minified)
+
+add `/dist` to `.gitignore`, add `script` to `package.json`
+
+```sh
+npm run build
+```
