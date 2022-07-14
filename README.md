@@ -1,6 +1,6 @@
 # steps
 
-add node_modules to .gitignore
+add `node_modules` to `.gitignore`
 
 create project & install webpack
 
@@ -50,4 +50,22 @@ add `/dist` to `.gitignore`, add `script` to `package.json`
 
 ```sh
 npm run build
+```
+
+add an index.html
+
+```sh
+touch ./index.html
+```
+
+edit index.html
+
+```html
+<html>
+<head>
+</head>
+<body>
+	<script type="text/javascript" src="./dist/main.js"></script>
+</body>
+</html>
 ```
