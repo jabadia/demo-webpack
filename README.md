@@ -162,3 +162,28 @@ look at `./dist/main.js`
 (()=>{"use strict";function o(o){console.log(`Hello ${o}!`)}console.log("main"),o("javi"),o("carlos")})();
 ```
 
+## add style
+
+edit index.html
+
+```html
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="./src/style.css">
+</head>
+<body>
+	<div>
+		html content here!
+	</div>
+	<script type="text/javascript" src="./dist/main.js"></script>
+</body>
+</html>
+```
+
+```css
+body {
+	color:  white;
+	font-size: 100px;
+	background: green;
+}
+```
