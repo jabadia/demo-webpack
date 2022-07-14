@@ -256,3 +256,63 @@ webpack adds some javascript code to inject the styles in the DOM after the HTML
 (see main.js ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js)
 
 ![](doc-images/01_screenshot.png)
+
+our js code is still there in `main.js` but it is more and more difficult to recognize
+
+## install the dev server
+
+```sh
+npm install -d webpack-dev-server
+```
+
+add the `serve` script
+
+```json
+{
+  "name": "demo-webpack",
+  "version": "1.0.0",
+  "description": "add node_modules to .gitignore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "serve": "webpack serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
+```
+
+move `index.html` to `public` folder and adjust reference to `main.js`
+also, add an input box
+
+```html
+<html>
+<head>
+</head>
+<body>
+	<div>
+		html content here!
+	</div>
+	<input type="text" name="field" />
+	<script type="text/javascript" src="./main.js"></script>
+</body>
+</html>
+```
+
+![](doc-images/02_screenshot.png)
+
+
+type some text in the input box
+
+change color in `styles.css`  -> HMR replaces the module without reloading (input state is preserved)
+
+change something in the HTML file  -> reloads the HTML (input state is lost)
+
